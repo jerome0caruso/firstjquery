@@ -1,3 +1,4 @@
+//Times visited
 let timesVisited = 0;
 let report = document.getElementById('report');
 
@@ -8,13 +9,12 @@ timesVisited += 1;
 let trying = 0;
 localStorage.setItem('timesVisited', timesVisited);
 
-const myFunk = (string, ...vals) =>
+const taggedTemp = (string, ...vals) =>
     string.reduce((acc, iterator, index) => 
         (`${acc} <span class="color">${vals[index -1]}</span> ${iterator}`));
     
+report.innerHTML = (taggedTemp`You have been to this page ${timesVisited} times!`);
 
-
-report.innerHTML = (myFunk`You have been to this page ${timesVisited} times!`);
 
 
 //select box
