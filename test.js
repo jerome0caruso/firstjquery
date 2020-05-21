@@ -8,7 +8,7 @@ if(localStorage.timesVisited){
 timesVisited += 1;
 let trying = 0;
 localStorage.setItem('timesVisited', timesVisited);
-
+ 
 const taggedTemp = (string, ...vals) =>
     string.reduce((acc, iterator, index) => 
         (`${acc} <span class="color">${vals[index -1]}</span> ${iterator}`));
@@ -19,7 +19,11 @@ report.innerHTML = (taggedTemp`You have been to this page ${timesVisited} times!
 
 //select box
 $("select[name='choose']").change(function() {
-    $("#genderSpan").html($(this).val());
+    if($(this).val() === "select"){
+        $("#genderSpan").html("")
+    }else{
+    $("#genderSpan").html($(this).val()) 
+    }
 });
 
 //radio buttons
@@ -45,8 +49,6 @@ $("input:checkbox").change(function() {
     $("#featureSpan").html("");//clear the space before setting the values for checked
     for (let i = 0; i < allChecked.length; i++){
         $("#featureSpan").append(allChecked[i]);
-        console.log("I", i)
-        console.log("len",allChecked.length )
         if( i < allChecked.length -1)
           $("#featureSpan").append(", ");
         else
@@ -55,3 +57,40 @@ $("input:checkbox").change(function() {
 
 
 })
+//----------
+$("button[name='submit']").click(passwordFunk);
+
+$("input[name='password']").keypress(function(){
+    if(event.keyCode === 13){
+        passwordFunk();
+    }
+})
+
+
+    function passwordFunk() {
+        var passwordField = $("input[name='password']");
+        var password = passwordField.val();
+        var isOkay = true;
+    
+        if(password.length < 10){
+            isOkay = false;
+            $("#atLeast10Chars").show();
+        }
+        if (/\d/.test(password) == false) {
+            isOkay = false;
+            $("#needsNumber").show();
+        }
+        if(isOkay == false){
+            $("#successMessage").hide();
+            $("#errorMessage").show();
+            passwordField.removeClass("goodBox").addClass("errorBox");
+        }
+        else{
+            $(".errorText").hide();
+            $("#successMessage").show();
+            passwordField.removeClass("errorBox").addClass("goodBox");
+    
+        }
+    
+        return false;
+    };

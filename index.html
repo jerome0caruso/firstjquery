@@ -14,6 +14,7 @@
     <div class="container">
     <form>
         <select name="choose">
+            <option value="select">Select one</option>
             <option value="male">Male</option>
             <option value="female">Female</option>
         </select>
@@ -36,6 +37,22 @@
         </p>
 
     </form>
+<!-------------->
+
+    <input type="password" name="password"></input>
+    <br>
+    <span id="errorMessage" class="errorText" hidden>
+        Please fix the following errors:</span>
+    <ul>
+       <li id="needsNumber" class"errorText" hidden>The password must contain a number</li>
+       <li id="atLeast10Chars" class"errorText" hidden>The password must be at least 10 characters long</li>
+
+    </ul>
+    <span id="successMessage" hidden> The password is valid!</span>
+    <p>
+        <button name="submit">Validate Password</button>
+    </p>
+
 </container>
 
 

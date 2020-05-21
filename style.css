@@ -14,3 +14,16 @@ body{
 #report{
     padding:15px;
 }
+
+.errorText {
+    color: red;
+}
+
+.errorBox {
+    border: 2px solid red;
+}
+
+.goodBox{
+    border: 2px solid green;
+}
+
